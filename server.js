@@ -21,7 +21,11 @@ db.once("open", () => console.log("mongoose is connected connected"));
 app.use(bodyParser.json());
 
 //exemple for useing routes files
+
+require("./routes/ProductRoutes")(app);
+
 require("./routes/UserRoute.js")(app);
+
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
