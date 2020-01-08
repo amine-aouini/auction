@@ -4,4 +4,3 @@ git add README.md
 git commit -m "first commit"
 git remote add origin https://github.com/Across-borders/auction.git
 git push -u origin master
-to start the app run "npm run dev"

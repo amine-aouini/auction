@@ -20,7 +20,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(12px + 2vmin);
   color: white;
 }
 
@@ -35,4 +35,80 @@
   to {
     transform: rotate(360deg);
   }
+}
+/********************************/
+.mProduct {
+  transition: box-shadow 0.3s;
+  width: 18rem;
+  height: 22rem;
+  margin: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  float: left;
+  font-size: 1em;
+}
+.cardTextM {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 16px;
+  max-height: 32px;
+  /* The number of lines to be displayed */
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.mProduct:hover {
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+  transform: scale(1.03);
+}
+.price {
+  color: #99f;
+}
+.timer {
+  color: #453932;
+  font-size: 1.2em;
+  height: auto;
+  font-weight: bold;
+  line-height: normal;
+}
+.auctionPrice {
+  color: #fd7e14;
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+/*************************************/
+.auction {
+  transition: box-shadow 0.3s;
+  width: 26rem;
+  height: 25rem;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  padding-left: 20px;
+  margin: 10px;
+}
+
+.auctionHistory {
+  transition: box-shadow 0.3s;
+  width: 26rem;
+  height: 35rem;
+  padding-left: 20px;
+  margin: 10px;
+}
+
+.historyPrice {
+  color: #918982;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+.containerProduct {
+  display: flex;
+  flex-direction: row;
+  margin: 15px;
+  padding: 20px;
+  align-content: center;
+}
+
+.slides {
+  width: 50rem;
 }

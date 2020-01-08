@@ -1,46 +1,67 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import About from "./components/about";
-import Users from "./components/users";
+import LogIn from "./components/User/LogIn.js";
+import SignUp from "./components/signup";
+// import Product from "./components/Product/Product";
+// import MiniaturProduct from "./components/Product/MiniaturProduct";
+import checkToken from "./services/checkToken";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = { userName: null };
 
-import productService from "./services/productService";
+    this.changeUserName = this.changeUserName.bind(this);
+  }
 
-function App() {
-  // const getProducts = async () => { // exemple for using axios from servesie
-  //   let res = await productService.getAll();
-  //   console.log(res);
-  //   setproducts(res);
-  // };
+  changeUserName(userName) {
+    //updates the page with the user
+    this.setState({ userName });
+  }
 
-  return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
-
+  componentDidMount() {
+    //checks if the token is valid
+    checkToken.checkAuth(window.localStorage.getItem("token")).then(res => {
+      if (res) {
+        this.changeUserName(res.data.name);
+      }
+    });
+  }
+  render() {
+    //merge this part
+    return (
+      <Router>
         <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
+          <div>
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                {!this.state.userName ? (
+                  <Route exact path="/">
+                    <li>
+                      <Link to="/LogIn">LogIn</Link>
+                    </li>
+                    <li>
+                      <Link to="/">signUp</Link>
+                    </li>
+                    <div>not logged in</div>
+                  </Route>
+                ) : (
+                  <div> {this.state.userName} </div>
+                )}
+              </ul>
+            </nav>
+            <Route path="/Login" exact>
+              <LogIn changeUserName={this.changeUserName} />
+            </Route>
+          </div>
         </Switch>
-      </div>
-    </Router>
-  );
+      </Router>
+    );
+  }
 }
 
 export default App;
