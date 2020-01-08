@@ -49,7 +49,7 @@ productRoutes.route('/api/add').post(function(req,res){
 
         
 
-        productRoutes.route('/api//update/:id').post(function(req, res){
+        productRoutes.route('/api/update/:id').post(function(req, res){
             Product.findById(req.params.id, function(err, product){
                 // maybe we should add a condition of there is no auction in this product yet
                 if(!product)
@@ -85,33 +85,64 @@ productRoutes.route('/api/product/:id/:auction').put(function(req,res){
                     res.status(404).send('hheey not found');
         else
         // verify how to update
-         product.curent_price += auc 
-    })
-
-})
-
-// update availability
-productRoutes.route('/api/product/:id').get(function(req,res){
-    // check if the initial_date + duration >= sysdate, if it is 
-    // set the availability in data base to false and get the winner.
-    // get winner
-    Product.findById(req.params.id, function(err, product){
-        if(!product)
-            res.status(404).send('hheey not found');
-        else
-        // if(test the availability){
-            product.availability = false
-        productRoutes.route('/api/product/:id').get(function(req,res){
-        // the winner is the last element in tha array of participant
-        
+            product.curent_price += auc 
+            product.save().then(product =>{
+            res.json('product updated');
+            })
+            .catch(err => {
+            res.status(400).send("Update not done")
         })
     })
 
 })
 
+// update availability
+productRoutes.route('/api/product/:id').put(function(req,res){
+    // check if the date now > initial date + duration if it is  
+    // set the availability in data base to false and get the winner.
+
+    Product.findById(req.params.id, function(err, product){
+        if(!product)
+            res.status(404).send('hheey not found');
+        else
+            if(Date.now()> product.initial_date + product.duration){ 
+            product.availability = false
+            // after changing the availability we get the winner
+            productRoutes.route('/api/product/:id/winner').get(function(req,res){
+        // the winner is the last element in tha array of participant
+                if(!product)
+                res.status(404).send('not found')
+                else
+                let win = product.participants.pop();
+                res.json(win);
+        
+            })
+        }
+    })
+
+})
+// participant
+productRoutes.route('/api/product/:id/participants').post(function(req,res){
+    Product.findById(req.params.id, function(err, product){
+        if(!product)
+            res.status(404).send('prod not found');
+        else
+        var user = req.body.username
+        var auction = req.body.auction
+        var obj={}
+        price = product.curent_price + auction
+        obj.user = price
+        product.participants.push(obj)
+        product.save().then(product =>{
+            res.json('participant added ');
+        })
+        .catch(err => {
+            res.status(400).send("Update not done")
+        })
 
 
 
+})
 
 }
 
