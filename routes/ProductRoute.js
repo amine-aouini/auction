@@ -11,21 +11,24 @@ app.use(cors());
 
 module.exports = app => {
   // all product
-  app.get("/api/allProducts", (req, res) => {
+  app.get("/api/products", (req, res) => {
     Product.find(function (err, products) {
+
       if (err) {
-        console.log(err);
+        res.status(404).send(err)
+
       } else {
         //
-        console.log(products);
-        res.json(products);
+        console.log('===>', products);
+        res.status(200).send(products);
+        res.end()
       }
     });
   });
 
   //  product by id
   app.get("/api/product/:id", (req, res) => {
-    console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr')
+
     let id = req.params.id;
     Product.findById(id)
       .populate("participants.user")

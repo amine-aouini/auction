@@ -8,6 +8,7 @@ git push -u origin master
 //***************************
 npm install react-countdown-now --save
 npm install react-bootstrap bootstrap
+npm install react-datepicker --save
 //**************************
 to start working after pull requestig do : 
 git remote add remote https://github.com/Across-borders/auction.git

@@ -3,7 +3,7 @@ const Category = require("../Database/Category ");
 module.exports = app => {
 
     app.post('/api/AddCategory', (req, res) => {
-        console.log('yesssssssssssssssssssssssssss')
+
         Category.createCategory(req.body, (err, data) => {
             if (err) {
                 res.status(409).send('duplicate key')
@@ -35,13 +35,13 @@ module.exports = app => {
     })
 
     app.get('/api/categories', (req, res) => {
-        console.log('cateeeeeeeeeeeeeee')
+
         Category.getAll((err, data) => {
             if (err) {
                 res.status(404).send(err)
             }
             else {
-                console.log(data)
+
                 res.status(200).send(data)
                 res.end()
             }
