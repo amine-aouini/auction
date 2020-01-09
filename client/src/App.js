@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Button, Form, Alert, Modal, Navbar, Nav, NavDropdown, FormControl } from "react-bootstrap";
 import LogIn from "./components/User/LogIn.js";
 import SignUp from "./components/User/signup";
+import Home from "./components/home"
 import AddProduct from "./components/Product/addProduct";
 import AddCategory from "./components/category/AddCategory";
 import checkToken from "./services/checkToken";
@@ -89,6 +90,7 @@ class App extends React.Component {
             </Navbar>
           </Switch>
         </Router>
+<<<<<<< HEAD
 =======
 import About from "./components/about";
 import Users from "./components/users";
@@ -136,6 +138,9 @@ function App() {
           </Route>
         </Switch>
 >>>>>>> 2f2536bff50f914cb44ab064e009d2190f95ae21
+=======
+        <Home></Home>
+>>>>>>> 56b396f67e5263577e338832d1fb7fc27b9e3c89
       </div>
     );
   }
