@@ -3,7 +3,7 @@ const UserDataBase = require("../Database/User");
 const bcrypt = require("bcryptjs");
 const User = mongoose.model("user");
 const auth = require("./middleware/auth");
-const router = require("router");
+
 module.exports = app => {
   app.post("/api/signup", (req, res, next) => {
     var name = req.body.name;

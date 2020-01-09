@@ -1,7 +1,4 @@
 import React from 'react';
-
-
-
 import { Row, Col, Carousel, Container } from 'react-bootstrap'
 
 import Auction from './Auction';

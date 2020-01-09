@@ -60,7 +60,7 @@ const generateAuthToken = (user, callback) => {
     }
   );
 };
-
+exports.User = User;
 exports.createUser = createUser;
 exports.findUser = findUser;
 exports.generateAuthToken = generateAuthToken;
