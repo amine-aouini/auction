@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-<<<<<<< HEAD
+
 import { Button, Form, Alert, Modal, Navbar, Nav, NavDropdown, FormControl } from "react-bootstrap";
 import LogIn from "./components/User/LogIn.js";
 import SignUp from "./components/User/signup";
@@ -90,57 +90,6 @@ class App extends React.Component {
             </Navbar>
           </Switch>
         </Router>
-<<<<<<< HEAD
-=======
-import About from "./components/about";
-import Users from "./components/users";
-import Product from "./components/Product/Product";
-import MiniaturProduct from "./components/Product/MiniaturProduct";
-
-import "./App.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-import productService from "./services/productService";
-
-
-function App() {
-  // const getProducts = async () => { // exemple for using axios from servesie
-  //   let res = await productService.getAll();
-  //   console.log(res);
-  //   setproducts(res);
-  // };
-
-  return (
-    <Router>
-      {/* <MiniaturProduct></MiniaturProduct> */}
-      <Product></Product>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-        </Switch>
->>>>>>> 2f2536bff50f914cb44ab064e009d2190f95ae21
-=======
-        <Home></Home>
->>>>>>> 56b396f67e5263577e338832d1fb7fc27b9e3c89
       </div>
     );
   }
