@@ -47,7 +47,7 @@ const generateAuthToken = (user, callback) => {
   jwt.sign(
     { _id: user._id },
     "private key",
-    { expiresIn: "5m" },
+    { expiresIn: "90m" },
     (err, token) => {
       if (err) throw err;
       user.tokens = user.tokens.concat({ token });
@@ -60,7 +60,7 @@ const generateAuthToken = (user, callback) => {
     }
   );
 };
-
+exports.User = User;
 exports.createUser = createUser;
 exports.findUser = findUser;
 exports.generateAuthToken = generateAuthToken;

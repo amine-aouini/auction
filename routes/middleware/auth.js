@@ -14,7 +14,7 @@ const auth = (req, res, next) => {
           .status(401)
           .send({ error: "Not authorized to access this resource" });
       User.findOne({ _id: decoded._id, "tokens.token": token }, (err, user) => {
-        if (err) throw err;
+        if (err) console.log(err);
         if (!user) {
           throw new Error();
         }

@@ -8,24 +8,25 @@ class MiniaturProduct extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      timer: Date.now() + 50000000 // Date.now() should be fix for every product date retreav from database
+      timer: new Date(this.props.product.initil_date).getTime() + 50000000 // Date.now() should be fix for every product date retreav from database
     };
   }
-
+  componentDidMount() {
+    console.log(new Date(this.props.product.initil_date).getTime())
+  }
   render() {
     return (
       <div>
         <Card bg="light" className="mProduct">
-          <Card.Img variant="top" src="1.jpg" />
+          <Card.Img className='minImage' variant="top" src={this.props.product.image} />
           {/*dimension photo   288x176*/}
           <Card.Body>
-            <Card.Title>Product Title</Card.Title>
+            <Card.Title className='minTitle'>{this.props.product.name}</Card.Title>
             <Card.Text className="cardTextM">
-              1 nuit 3★ pour 2 personnes avec petit déjeuner
-              etlllllllhrrrrrrrrrrrrrrrr222222222222222222222222222222222222222222222
+              {this.props.product.descreption}
             </Card.Text>
             <Row>
-              <Col xs={12} md={8} className="timer">
+              <Col xs={12} md={7} className="timer">
                 {" "}
                 <Countdown
                   date={this.state.timer}
@@ -34,14 +35,15 @@ class MiniaturProduct extends React.Component {
                   }}
                 />
               </Col>
-              <Col xs={6} md={4} className="auctionPrice">
-                20Dt
+              {/* xs={6} */}
+              <Col md={5} className="auctionPrice text-right">
+                {this.props.product.last_auction_price}
               </Col>
             </Row>
             <Row>
-              {" "}
-              <Col className="price" md={{ span: 4, offset: 8 }}>
-                120Dt
+              {/* md={{ span: 4, offset: 8 }} */}
+              <Col className="price text-right" >
+                {this.props.product.value}
               </Col>
             </Row>
           </Card.Body>
@@ -51,3 +53,4 @@ class MiniaturProduct extends React.Component {
   }
 }
 export default MiniaturProduct;
+
