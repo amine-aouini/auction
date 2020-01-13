@@ -6,7 +6,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-require("./Database/Product");
+require("./Database/Product.js");
 
 require("./routes/UserRoute.js")(app);
 
